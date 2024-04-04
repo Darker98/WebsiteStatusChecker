@@ -20,7 +20,7 @@ if port < 1 or port > 65535:
 
 url = "http://{}:{}".format(sys.argv[1], port)
 
-# Attemp to connect to the server
+# Attempt to connect to the server
 try:
     reply = requests.head(url, timeout = 1000)
     if reply.status_code == requests.codes.ok:
@@ -35,7 +35,3 @@ except requests.exceptions.Timeout:
 except requests.exceptions.RequestException:
     print("Connection error")
     sys.exit(4)
-
-
-
-    
