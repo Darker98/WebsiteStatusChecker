@@ -16,22 +16,22 @@ else:
 
 if port < 1 or port > 65535:
     print("Invalid port number")
-    sys.exit(2)
+    sys.exit(1)
 
 url = "http://{}:{}".format(sys.argv[1], port)
 
 # Attempt to connect to the server
 try:
-    reply = requests.head(url, timeout = 1000)
+    reply = requests.head(url, timeout = 500)
     if reply.status_code == requests.codes.ok:
         print("Site is up")
     else:
-        print("Server error")
+        print("Site is down")
 
 except requests.exceptions.Timeout:
     print("Request timed out")
-    sys.exit(3)
+    sys.exit(1)
 
 except requests.exceptions.RequestException:
     print("Connection error")
-    sys.exit(4)
+    sys.exit(1)
